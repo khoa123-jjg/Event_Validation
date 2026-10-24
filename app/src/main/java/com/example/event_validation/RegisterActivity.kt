@@ -10,6 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.doAfterTextChanged
 import com.example.event_validation.databinding.ActivityRegisterBinding
+import com.google.android.material.snackbar.Snackbar
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
@@ -23,14 +24,19 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.btnRegister.setOnClickListener {
             if (validation()) {
-                val intent = Intent(this, DetailActivity::class.java).apply{
-                    putExtra("NAME", binding.tiedtName.text.toString())
-                    putExtra("EMAIL", binding.tiedtemail.text.toString())
-                    putExtra("MSV", binding.tiedtMSV.text.toString())
-                    putExtra("CLASS", binding.tiedtClass.text.toString())
-                    putExtra("PHONE", binding.tiedtNumberPhone.text.toString())
-                }
-                startActivity(intent)
+
+                Snackbar.make(binding.root, "Đăng ký thành công!", Snackbar.LENGTH_LONG)
+                    .setAction("Xem chi tiết") {
+                        val intent = Intent(this, DetailActivity::class.java).apply {
+                            putExtra("EXTRA_NAME", binding.tiedtName.text?.toString()?.trim().orEmpty())
+                            putExtra("EXTRA_EMAIL", binding.tiedtemail.text?.toString()?.trim().orEmpty())
+                            putExtra("EXTRA_PHONE", binding.tiedtNumberPhone.text?.toString()?.trim().orEmpty())
+                            putExtra("EXTRA_MSV", binding.tiedtMSV.text?.toString()?.trim().orEmpty())
+                            putExtra("EXTRA_CLASS", binding.tiedtClass.text?.toString()?.trim().orEmpty())
+                        }
+                        startActivity(intent)
+                    }
+                    .show()
             }
         }
 
@@ -58,27 +64,15 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         if (email.isEmpty()) {
-            binding.tilName.error = "Vui lòng nhập "
-            binding.tiedtName.requestFocus()
-            isValid = false
-        } else {
-                binding.tilName.error = null
-        }
-
-        if (email.isEmpty()) {
             binding.tilemail.error = "Vui lòng nhập email"
             binding.tiedtemail.requestFocus()
             isValid = false
-        } else {
-            binding.tilemail.error = null
-        }
-
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.tilemail.error = "Email không hợp lệ"
             binding.tiedtemail.requestFocus()
             isValid = false
         }else {
-                binding.tilemail.error = null
+            binding.tilemail.error = null
         }
 
         if (msv.isEmpty()) {
@@ -97,11 +91,16 @@ class RegisterActivity : AppCompatActivity() {
             binding.tilClass.error = null
         }
 
+        val phoneRegex = "^(03|05|07|08|09)\\d{8}$".toRegex()
         if (phone.isEmpty()) {
             binding.tilNumberPhone.error = "Vui lòng nhập số điện thoại"
             binding.tiedtNumberPhone.requestFocus()
             isValid = false
-        } else {
+        }else if (!phone.matches(phoneRegex)) {
+            binding.tilNumberPhone.error = "SĐT không hợp lệ"
+            binding.tiedtNumberPhone.requestFocus()
+            isValid = false}
+        else {
             binding.tilNumberPhone.error = null
         }
         return isValid

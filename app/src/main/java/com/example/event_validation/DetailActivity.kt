@@ -1,5 +1,6 @@
 package com.example.event_validation
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +15,16 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
-        
 
+        binding.tvName.text = intent.getStringExtra("EXTRA_NAME")
+        binding.tvEmail.text = intent.getStringExtra("EXTRA_EMAIL")
+        binding.tvMSV.text = "MSV: ${intent.getStringExtra("EXTRA_MSV")} - Lớp: ${intent.getStringExtra("EXTRA_CLASS")}"
+        binding.tvPhone.text = intent.getStringExtra("EXTRA_PHONE")
+
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
