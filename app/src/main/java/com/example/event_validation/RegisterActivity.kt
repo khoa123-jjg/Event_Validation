@@ -1,6 +1,9 @@
 package com.example.event_validation
 
+import android.R.id.message
+import android.content.Intent
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -15,5 +18,8 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
         enableEdgeToEdge()
         setContentView(R.layout.activity_register)
+
+        
     }
+
 }
