@@ -14,7 +14,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_detail)
+        
 
     }
 }
