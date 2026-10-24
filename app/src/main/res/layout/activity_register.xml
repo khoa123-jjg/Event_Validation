@@ -32,6 +32,7 @@
         app:layout_constraintTop_toTopOf="@id/tvTitle">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiedtName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Họ và tên"
@@ -48,10 +49,11 @@
         app:layout_constraintTop_toBottomOf="@id/tilName">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiedtemail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:inputType="text"/>
+            android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -64,10 +66,11 @@
         app:layout_constraintTop_toBottomOf="@id/tilemail">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiedtNumberPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone"
-            android:inputType="text"/>
+            android:inputType="phone"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -80,9 +83,27 @@
         app:layout_constraintTop_toBottomOf="@id/tilNumberPhone">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiedtMSV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Mã sinh viên"
+            android:inputType="text"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilClass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tilMSV">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tiedtClass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Lớp"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +115,7 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tilMSV"/>
+        app:layout_constraintTop_toBottomOf="@id/tilClass"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
